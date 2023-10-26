@@ -1,0 +1,36 @@
+update_notification: true
+world_whitelist_system:
+  enabled: false
+  worlds:
+    - world
+    - world_nether
+    - world_the_end
+  teleport_coordinates_on_kick: spawn;0;60;0;90;0
+reset_time: 22:00
+reset_day: Sunday
+information_message_enabled_by_default: true
+data_save_time: 5
+action_bar: false
+boss_bar:
+  enabled: true
+  color: RED
+  style: SEGMENTED_10
+time_limits:
+  default: 90000
+  vip: 7200
+  op: 0
+notification:
+  '60':
+    message:
+      - ''
+      - '{centered}&c&lWARNING!'
+      - '{centered}&cYou have &71 minute &cleft to play on the server.'
+      - ''
+  '30':
+    message:
+      - ''
+      - '{centered}&c&lWARNING!'
+      - '{centered}&cYou have &730 seconds &cleft to play on the server.'
+      - ''
+Data:
+  next_millis_reset: 1698364800546
