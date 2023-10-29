@@ -119,7 +119,7 @@ public class MensajesManager {
         boolean isBold = false;
        
         for(char c : message.toCharArray()){
-                if(c == '§'){
+                if(c == '&'){
                         previousCode = true;
                         continue;
                 }else if(previousCode == true){

@@ -1,6 +1,7 @@
 package ptl.ajneb97.utils;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 
@@ -9,30 +10,16 @@ import ptl.ajneb97.managers.MensajesManager;
 public class UtilsTime {
 
 	public static String getTime(long segundos,MensajesManager msgManager) {
-		long esperatotalmin = segundos/60;
-		long esperatotalhour = esperatotalmin/60;
-		long esperatotalday = esperatotalhour/24;
-		if(segundos > 59){
-			segundos = segundos - 60*esperatotalmin;
+		int day = (int) TimeUnit.SECONDS.toDays(segundos);
+		long hours = TimeUnit.SECONDS.toHours(segundos) - (day * 24L);
+		long minute = TimeUnit.SECONDS.toMinutes(segundos) -
+				(TimeUnit.SECONDS.toHours(segundos)* 60);
+		long second = TimeUnit.SECONDS.toSeconds(segundos) -
+				(TimeUnit.SECONDS.toMinutes(segundos) *60);
+		if(day == 0) {
+			return hours + ":" + minute + ":" + second;
 		}
-		String time = segundos+msgManager.getTimeSeconds();		    		
-		if(esperatotalmin > 59){
-			esperatotalmin = esperatotalmin - 60*esperatotalhour;
-		}	
-		if(esperatotalmin > 0){
-			time = esperatotalmin+msgManager.getTimeMinutes()+" "+time;
-		}
-		if(esperatotalhour > 24) {
-			esperatotalhour = esperatotalhour - 24*esperatotalday;
-		}
-		if(esperatotalhour > 0){
-			time = esperatotalhour+msgManager.getTimeHours()+" " + time;
-		}
-		if(esperatotalday > 0) {
-			time = esperatotalday+msgManager.getTimeDays()+" " + time;
-		}
-
-		return time;
+		return day + ":" + hours + ":" + minute + ":" + second;
 	}
 	
 	//Devuelve los millis del proximo reinicio de tiempo
